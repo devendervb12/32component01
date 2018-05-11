@@ -1,28 +1,36 @@
 
 sap.ui.core.UIComponent.extend("smax.batch32.A1.Component", {
 	
-	createContent : function(){	
-
-		// xml view
-		/*var oPage = new sap.m.Page({
-			content : [
-				new sap.m.Button({ text : "Save"})
+	metadata : {
+		rootView : "smax.batch32.A1.view.App",
+		routing : {
+			config : {
+				routerClass : "sap.m.routing.Router",viewType : "XML",
+				controlId : "idApp",
+				controlAggregation : "pages",
+				viewPath : "smax.batch32.A1.view"
+			},
+			routes : [
+				{
+				 pattern : "",
+				 name : "p1",
+				 viewName : "Page1",
+				}, 
+				{
+				pattern : "toPage2",
+				name : "p2",
+				viewName : "Page2",				
+				}
 			]
-		});*/
-		
-		var oPage = sap.ui.view({
-		       id : "idView1",
-		       viewName : "smax.batch32.A1.view.Page1",
-		       type : "XML"
-		});
-		
-		return new sap.m.App({
-			pages :[
 			
-			oPage	
-				
-			]
-		})
+		}
+	},
+	init : function(){
+		//framework will create a Router for smax.batch31.A1 Component
+		sap.ui.core.UIComponent.prototype.init.apply(this);
+		
+		//getting the reference of Router
+		var oRouter = this.getRouter();
+		oRouter.initialize();
 	}
-	
 });
